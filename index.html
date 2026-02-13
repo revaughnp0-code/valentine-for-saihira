@@ -24,7 +24,7 @@
     box-shadow: 0 15px 35px rgba(0,0,0,0.25);
     animation: popIn 1s ease;
     position: relative;
-    z-index: 2;
+    z-index: 5;
   }
 
   h1 {
@@ -79,20 +79,20 @@
     to { opacity: 1; transform: scale(1); }
   }
 
-  .heart {
+  .float {
     position: absolute;
-    color: #ff4d6d;
-    animation: float 6s linear infinite;
+    animation: floatUp linear infinite;
     z-index: 1;
+    opacity: 0.9;
   }
 
-  @keyframes float {
+  @keyframes floatUp {
     from {
-      transform: translateY(100vh);
+      transform: translateY(110vh) rotate(0deg);
       opacity: 1;
     }
     to {
-      transform: translateY(-10vh);
+      transform: translateY(-15vh) rotate(360deg);
       opacity: 0;
     }
   }
@@ -127,17 +127,21 @@
     alert("YAYYYY 💖🥰 I knew you'd say yes, Saira!");
   }
 
-  // Floating hearts
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 25 + 15 + "px";
-    document.body.appendChild(heart);
+  // 💖🌸 HEARTS + FLOWERS BACKGROUND
+  const emojis = ["💖","💕","🌸","🌺","🌹","💐","❤️"];
 
-    setTimeout(() => heart.remove(), 6000);
-  }, 300);
+  setInterval(() => {
+    const item = document.createElement("div");
+    item.className = "float";
+    item.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.fontSize = Math.random() * 30 + 20 + "px";
+    item.style.animationDuration = Math.random() * 5 + 5 + "s";
+
+    document.body.appendChild(item);
+
+    setTimeout(() => item.remove(), 10000);
+  }, 200);
 </script>
 
 </body>
